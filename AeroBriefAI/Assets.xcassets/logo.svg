@@ -1,0 +1,103 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+
+<defs>
+  <clipPath id="gc">
+    <circle cx="512" cy="430" r="340"/>
+  </clipPath>
+  <radialGradient id="gg" cx="38%" cy="32%" r="65%">
+    <stop offset="0%" stop-color="#0D3060"/>
+    <stop offset="65%" stop-color="#071628"/>
+    <stop offset="100%" stop-color="#030A14"/>
+  </radialGradient>
+  <radialGradient id="gs" cx="32%" cy="28%" r="48%">
+    <stop offset="0%" stop-color="#40C8FF" stop-opacity="0.16"/>
+    <stop offset="100%" stop-color="#40C8FF" stop-opacity="0"/>
+  </radialGradient>
+</defs>
+
+<!-- Background -->
+<rect width="1024" height="1024" fill="#040C18"/>
+
+<!-- Stars -->
+<circle cx="120" cy="83"  r="3"   fill="#40C8FF" opacity="0.5"/>
+<circle cx="874" cy="63"  r="3.5" fill="#40C8FF" opacity="0.55"/>
+<circle cx="218" cy="207" r="2"   fill="#40C8FF" opacity="0.4"/>
+<circle cx="840" cy="178" r="2.5" fill="#40C8FF" opacity="0.45"/>
+<circle cx="72"  cy="298" r="3"   fill="#40C8FF" opacity="0.35"/>
+<circle cx="952" cy="293" r="2"   fill="#40C8FF" opacity="0.4"/>
+<circle cx="903" cy="478" r="3"   fill="#40C8FF" opacity="0.35"/>
+<circle cx="268" cy="72"  r="2"   fill="#40C8FF" opacity="0.5"/>
+<circle cx="754" cy="118" r="2.5" fill="#40C8FF" opacity="0.4"/>
+<circle cx="650" cy="48"  r="3"   fill="#40C8FF" opacity="0.5"/>
+<circle cx="364" cy="42"  r="2"   fill="#40C8FF" opacity="0.4"/>
+<circle cx="512" cy="83"  r="3"   fill="#40C8FF" opacity="0.5"/>
+<circle cx="929" cy="132" r="2"   fill="#40C8FF" opacity="0.4"/>
+<circle cx="154" cy="462" r="2.5" fill="#40C8FF" opacity="0.3"/>
+
+<!-- Atmosphere glow -->
+<circle cx="512" cy="430" r="390" fill="#0A2040" opacity="0.4"/>
+
+<!-- Globe -->
+<circle cx="512" cy="430" r="340" fill="url(#gg)"/>
+
+<!-- Continents -->
+<g clip-path="url(#gc)">
+  <path d="M256 175 Q279 159 318 167 Q355 162 374 182 Q392 202 385 228 Q374 250 359 263 Q325 295 302 341 Q294 359 280 368 Q249 379 239 357 Q229 331 238 304 Q247 276 256 255 Q263 230 259 208 Z" fill="#0E4A2A"/>
+  <path d="M397 117 Q420 106 438 117 Q450 132 444 156 Q433 174 414 177 Q395 174 389 158 Q383 139 397 117 Z" fill="#0E4A2A"/>
+  <path d="M507 152 Q528 144 549 154 Q568 166 570 189 Q568 208 556 219 Q539 230 524 226 Q504 218 499 200 Q493 177 507 152 Z" fill="#0E4A2A"/>
+  <path d="M510 238 Q536 231 554 248 Q571 268 571 300 Q570 340 557 374 Q541 404 521 409 Q498 409 486 383 Q477 356 480 319 Q484 281 498 258 Z" fill="#0E4A2A"/>
+  <path d="M568 146 Q612 130 665 137 Q710 144 737 167 Q757 188 752 212 Q746 238 723 248 Q698 257 678 243 Q654 232 632 240 Q609 250 594 238 Q574 220 570 197 Z" fill="#0E4A2A"/>
+  <path d="M332 382 Q356 370 375 386 Q394 405 391 433 Q387 464 370 484 Q350 505 328 499 Q309 488 308 460 Q306 428 320 406 Z" fill="#0E4A2A"/>
+  <path d="M694 340 Q721 331 743 346 Q761 364 754 389 Q745 409 724 412 Q702 412 690 395 Q678 374 683 355 Z" fill="#0E4A2A"/>
+  <!-- Grid lines -->
+  <ellipse cx="512" cy="430" rx="340" ry="340" fill="none" stroke="#1E90FF" stroke-width="1.2" opacity="0.13"/>
+  <ellipse cx="512" cy="430" rx="215" ry="340" fill="none" stroke="#1E90FF" stroke-width="1"   opacity="0.1"/>
+  <ellipse cx="512" cy="430" rx="97"  ry="340" fill="none" stroke="#1E90FF" stroke-width="1"   opacity="0.08"/>
+  <ellipse cx="512" cy="320" rx="307" ry="79"  fill="none" stroke="#1E90FF" stroke-width="1"   opacity="0.1"/>
+  <ellipse cx="512" cy="430" rx="340" ry="38"  fill="none" stroke="#1E90FF" stroke-width="1.2" opacity="0.13"/>
+  <ellipse cx="512" cy="538" rx="307" ry="77"  fill="none" stroke="#1E90FF" stroke-width="1"   opacity="0.1"/>
+</g>
+
+<!-- Globe rings -->
+<circle cx="512" cy="430" r="340" fill="none" stroke="#1E90FF" stroke-width="3" opacity="0.45"/>
+<circle cx="512" cy="430" r="347" fill="none" stroke="#40C8FF" stroke-width="1" opacity="0.2"/>
+<circle cx="512" cy="430" r="340" fill="url(#gs)"/>
+
+<!-- Flight route arc -->
+<path d="M328 571 Q470 194 698 220" fill="none" stroke="#40C8FF" stroke-width="3.2" stroke-dasharray="13 11" stroke-linecap="round" opacity="0.65"/>
+<!-- DEP -->
+<circle cx="328" cy="571" r="11" fill="none" stroke="#40C8FF" stroke-width="3"/>
+<circle cx="328" cy="571" r="4.5" fill="#40C8FF"/>
+<!-- ARR -->
+<circle cx="698" cy="220" r="11" fill="none" stroke="#40C8FF" stroke-width="3"/>
+<circle cx="698" cy="220" r="4.5" fill="#40C8FF"/>
+
+<!-- AIRPLANE — top-down, tilted 52° -->
+<g transform="translate(494,358) rotate(52) scale(2.2)">
+  <!-- Fuselage -->
+  <ellipse cx="0" cy="0" rx="5" ry="28" fill="white"/>
+  <!-- Main wings -->
+  <path d="M -4,-4  L -36,14  L -34,20  L 0,8  L 34,20  L 36,14  L 4,-4 Z" fill="white"/>
+  <!-- Tail stabilizers -->
+  <path d="M -3,20  L -18,28  L -17,32  L 0,26  L 17,32  L 18,28  L 3,20 Z" fill="white" opacity="0.9"/>
+</g>
+
+<!-- WORDMARK -->
+<text x="512" y="836"
+      text-anchor="middle"
+      font-family="-apple-system,'SF Pro Display',Helvetica Neue,sans-serif"
+      font-size="90" font-weight="200" letter-spacing="16"
+      fill="#E8F4FF">AEROBRIEF</text>
+
+<!-- Divider lines -->
+<line x1="328" y1="858" x2="450" y2="858" stroke="#1E90FF" stroke-width="1.5" opacity="0.7"/>
+<circle cx="512" cy="858" r="6" fill="#40C8FF"/>
+<line x1="574" y1="858" x2="696" y2="858" stroke="#1E90FF" stroke-width="1.5" opacity="0.7"/>
+
+<text x="512" y="910"
+      text-anchor="middle"
+      font-family="-apple-system,'SF Pro Display',Helvetica Neue,sans-serif"
+      font-size="26" font-weight="300" letter-spacing="14"
+      fill="#1E90FF">AVIATION  INTELLIGENCE</text>
+
+</svg>

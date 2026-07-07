@@ -1,0 +1,26 @@
+# Xcode
+build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+*.xcscmblueprint
+*.xccheckout
+*.moved-aside
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# CocoaPods / Carthage (not currently used, but harmless to ignore)
+Pods/
+Carthage/Build/
+
+# macOS
+.DS_Store
+
+# Secrets — never commit local overrides of API keys/URLs
+*.xcconfig.local

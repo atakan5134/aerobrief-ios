@@ -1,0 +1,23 @@
+name: AeroBriefAI
+options:
+  bundleIdPrefix: com.aerobrief
+  deploymentTarget:
+    iOS: "17.0"
+targets:
+  AeroBriefAI:
+    type: application
+    platform: iOS
+    sources:
+      - path: AeroBriefAI
+    info:
+      path: AeroBriefAI/Info.plist
+      properties:
+        UILaunchScreen: {}
+        NSAppTransportSecurity:
+          NSAllowsArbitraryLoads: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.aerobrief.AeroBriefAI
+        SWIFT_VERSION: "5.0"
+        TARGETED_DEVICE_FAMILY: "1"
+        GENERATE_INFOPLIST_FILE: NO
