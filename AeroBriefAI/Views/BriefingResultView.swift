@@ -147,7 +147,7 @@ struct BriefingResultView: View {
                 NavCard(title: "SIGMETs on Route",
                         subtitle: sigmetSubtitle,
                         icon: "cloud.bolt.rain.fill", color: .red) {
-                    SigmetMapView(sigmets: briefing.sigmets)
+                    SigmetMapView(sigmets: briefing.sigmets, routePoints: briefing.flightPlan.routePoints)
                 }
             }
         }

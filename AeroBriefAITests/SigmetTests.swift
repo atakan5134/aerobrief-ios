@@ -24,6 +24,7 @@ final class SigmetTests: XCTestCase {
         "estimated_flight_time": "01:40",
         "estimated_utc": "2026-07-07T11:10:00Z",
         "altitude_overlap": true,
+        "location_confirmed": true,
         "source": "aviationweather.gov"
     }
     """
@@ -38,7 +39,25 @@ final class SigmetTests: XCTestCase {
         XCTAssertEqual(sigmet.polygon.first?.lat, 51.0)
         XCTAssertEqual(sigmet.estimatedFlightTime, "01:40")
         XCTAssertEqual(sigmet.timeOverlap, true)
+        XCTAssertEqual(sigmet.locationConfirmed, true)
         XCTAssertTrue(sigmet.isConfirmedOnRoute)
+    }
+
+    /// Older cached SIGMETs (saved before geometric refinement existed)
+    /// won't have "location_confirmed" at all — must still decode.
+    func testDecodesSigmetWithoutLocationConfirmedKey() throws {
+        let json = """
+        {
+            "fir": "LFFF", "fir_name": null, "hazard": "TURB", "qualifier": null,
+            "phenomenon": "Severe Turbulence", "raw_text": "...",
+            "valid_from": null, "valid_to": null, "base_ft": null, "top_ft": null,
+            "polygon": [], "on_route": true, "time_overlap": null,
+            "estimated_elapsed_minutes": null, "estimated_flight_time": null,
+            "estimated_utc": null, "altitude_overlap": null, "source": "mock"
+        }
+        """
+        let sigmet = try JSONDecoder().decode(Sigmet.self, from: Data(json.utf8))
+        XCTAssertNil(sigmet.locationConfirmed)
     }
 
     func testDecodesSigmetWithNullTimingFields() throws {
@@ -80,5 +99,22 @@ final class SigmetTests: XCTestCase {
         let briefing = try JSONDecoder().decode(Briefing.self, from: Data(json.utf8))
         XCTAssertEqual(briefing.id, "b1")
         XCTAssertTrue(briefing.sigmets.isEmpty)
+        // Regression: FlightPlan gained "routePoints" at the same time as
+        // the SIGMET feature; older cached flightPlan JSON without that key
+        // must still decode, defaulting to an empty route.
+        XCTAssertTrue(briefing.flightPlan.routePoints.isEmpty)
+    }
+
+    func testFlightPlanDecodesRoutePoints() throws {
+        let json = """
+        {
+            "ident": "CZQX", "lat": 47.4517, "lon": -59.865,
+            "acctMinutes": 87, "remtMinutes": 460, "isFirBoundary": true, "fir": "CZQX"
+        }
+        """
+        let point = try JSONDecoder().decode(RoutePoint.self, from: Data(json.utf8))
+        XCTAssertEqual(point.ident, "CZQX")
+        XCTAssertEqual(point.isFirBoundary, true)
+        XCTAssertEqual(point.acctMinutes, 87)
     }
 }

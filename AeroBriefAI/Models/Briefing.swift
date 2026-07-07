@@ -9,6 +9,23 @@ struct FuelSummary: Codable {
     let unit: String
 }
 
+/// A single waypoint or FIR-boundary crossing from the OFP's detailed route
+/// table, with real coordinates and cumulative elapsed time since
+/// departure — enough to draw the actual flight path on a map. Not every
+/// OFP format has this table (see backend's ofp_route_table.py), so this
+/// can be empty even for a successfully analyzed briefing.
+struct RoutePoint: Codable, Identifiable {
+    let ident: String
+    let lat: Double
+    let lon: Double
+    let acctMinutes: Int?
+    let remtMinutes: Int?
+    let isFirBoundary: Bool
+    let fir: String?
+
+    var id: String { "\(ident)-\(lat)-\(lon)" }
+}
+
 struct FlightPlan: Codable {
     let flightNumber: String?
     let callsign: String?
@@ -28,6 +45,68 @@ struct FlightPlan: Codable {
     let dispatcherRemarks: [String]
     let operationalRemarks: [String]
     let melCdlRemarks: [String]
+    let routePoints: [RoutePoint]
+
+    enum CodingKeys: String, CodingKey {
+        case flightNumber, callsign, aircraftRegistration, aircraftType
+        case departureAirport, destinationAirport, alternateAirports, route
+        case waypoints, airways, firs, estimatedDepartureTime, estimatedArrivalTime
+        case flightLevel, fuelSummary, dispatcherRemarks, operationalRemarks
+        case melCdlRemarks, routePoints
+    }
+
+    init(flightNumber: String?, callsign: String?, aircraftRegistration: String?, aircraftType: String?,
+         departureAirport: String?, destinationAirport: String?, alternateAirports: [String],
+         route: String?, waypoints: [String], airways: [String], firs: [String],
+         estimatedDepartureTime: String?, estimatedArrivalTime: String?, flightLevel: String?,
+         fuelSummary: FuelSummary, dispatcherRemarks: [String], operationalRemarks: [String],
+         melCdlRemarks: [String], routePoints: [RoutePoint] = []) {
+        self.flightNumber = flightNumber
+        self.callsign = callsign
+        self.aircraftRegistration = aircraftRegistration
+        self.aircraftType = aircraftType
+        self.departureAirport = departureAirport
+        self.destinationAirport = destinationAirport
+        self.alternateAirports = alternateAirports
+        self.route = route
+        self.waypoints = waypoints
+        self.airways = airways
+        self.firs = firs
+        self.estimatedDepartureTime = estimatedDepartureTime
+        self.estimatedArrivalTime = estimatedArrivalTime
+        self.flightLevel = flightLevel
+        self.fuelSummary = fuelSummary
+        self.dispatcherRemarks = dispatcherRemarks
+        self.operationalRemarks = operationalRemarks
+        self.melCdlRemarks = melCdlRemarks
+        self.routePoints = routePoints
+    }
+
+    // Custom decoding so briefings saved before "routePoints" existed on the
+    // backend still decode fine (defaults to empty, same pattern as
+    // Briefing's "sigmets" backward-compatibility handling below).
+    init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        flightNumber = try c.decodeIfPresent(String.self, forKey: .flightNumber)
+        callsign = try c.decodeIfPresent(String.self, forKey: .callsign)
+        aircraftRegistration = try c.decodeIfPresent(String.self, forKey: .aircraftRegistration)
+        aircraftType = try c.decodeIfPresent(String.self, forKey: .aircraftType)
+        departureAirport = try c.decodeIfPresent(String.self, forKey: .departureAirport)
+        destinationAirport = try c.decodeIfPresent(String.self, forKey: .destinationAirport)
+        alternateAirports = try c.decode([String].self, forKey: .alternateAirports)
+        route = try c.decodeIfPresent(String.self, forKey: .route)
+        waypoints = try c.decode([String].self, forKey: .waypoints)
+        airways = try c.decode([String].self, forKey: .airways)
+        firs = try c.decode([String].self, forKey: .firs)
+        estimatedDepartureTime = try c.decodeIfPresent(String.self, forKey: .estimatedDepartureTime)
+        estimatedArrivalTime = try c.decodeIfPresent(String.self, forKey: .estimatedArrivalTime)
+        flightLevel = try c.decodeIfPresent(String.self, forKey: .flightLevel)
+        fuelSummary = try c.decode(FuelSummary.self, forKey: .fuelSummary)
+        dispatcherRemarks = try c.decode([String].self, forKey: .dispatcherRemarks)
+        operationalRemarks = try c.decode([String].self, forKey: .operationalRemarks)
+        melCdlRemarks = try c.decode([String].self, forKey: .melCdlRemarks)
+        routePoints = try c.decodeIfPresent([RoutePoint].self, forKey: .routePoints) ?? []
+    }
 }
 
 struct Briefing: Codable, Identifiable {

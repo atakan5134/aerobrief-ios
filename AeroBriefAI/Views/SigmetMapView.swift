@@ -6,6 +6,10 @@ import MapKit
 /// inside that FIR (derived from the OFP's EET field on the backend).
 struct SigmetMapView: View {
     let sigmets: [Sigmet]
+    /// The flight's actual route, when the OFP had a detailed waypoint
+    /// table (see backend's ofp_route_table.py). Empty for OFP formats
+    /// without that table — the SIGMET areas still render without it.
+    var routePoints: [RoutePoint] = []
 
     @State private var cameraPosition: MapCameraPosition = .automatic
     @State private var selectedSigmetID: String?
@@ -25,13 +29,22 @@ struct SigmetMapView: View {
         }
         .navigationTitle("SIGMETs on Route")
         .navigationBarTitleDisplayMode(.inline)
-        .onAppear { fitAllPolygons() }
+        .onAppear { fitAll() }
     }
 
     // MARK: - Map
 
+    private var routeCoordinates: [CLLocationCoordinate2D] {
+        routePoints.map { CLLocationCoordinate2D(latitude: $0.lat, longitude: $0.lon) }
+    }
+
     private var map: some View {
         Map(position: $cameraPosition, selection: $selectedSigmetID) {
+            if routeCoordinates.count >= 2 {
+                MapPolyline(coordinates: routeCoordinates)
+                    .stroke(Color.accentColor, style: StrokeStyle(lineWidth: 3, lineCap: .round, dash: [1, 6]))
+            }
+
             ForEach(sigmets) { sigmet in
                 let coords = sigmet.polygon.map {
                     CLLocationCoordinate2D(latitude: $0.lat, longitude: $0.lon)
@@ -128,10 +141,13 @@ struct SigmetMapView: View {
         return CLLocationCoordinate2D(latitude: lat, longitude: lon)
     }
 
-    private func fitAllPolygons() {
-        let allCoords = sigmets.flatMap { $0.polygon }.map {
+    private func fitAll() {
+        // Prefer the full route (it's the more complete picture) when
+        // available; fall back to just the SIGMET polygons otherwise.
+        let sigmetCoords = sigmets.flatMap { $0.polygon }.map {
             CLLocationCoordinate2D(latitude: $0.lat, longitude: $0.lon)
         }
+        let allCoords = routeCoordinates.isEmpty ? sigmetCoords : routeCoordinates + sigmetCoords
         guard let region = boundingRegion(for: allCoords) else { return }
         cameraPosition = .region(region)
     }
@@ -184,6 +200,12 @@ private struct SigmetRow: View {
                 Text("Aircraft estimated in this FIR at +\(eta) after departure")
                     .font(.caption)
                     .foregroundColor(sigmet.timeOverlap == true ? .red : .secondary)
+            }
+
+            if sigmet.locationConfirmed == true {
+                Label("Route track crosses this exact area", systemImage: "checkmark.seal.fill")
+                    .font(.caption2.bold())
+                    .foregroundColor(.red)
             }
 
             Text(sigmet.rawText)

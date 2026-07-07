@@ -28,6 +28,7 @@ struct Sigmet: Codable, Identifiable {
     let estimatedFlightTime: String?
     let estimatedUtc: String?
     let altitudeOverlap: Bool?
+    let locationConfirmed: Bool?
     let source: String
 
     var id: String { fir + phenomenon + (validFrom ?? "") + (estimatedFlightTime ?? "") }
@@ -56,6 +57,7 @@ struct Sigmet: Codable, Identifiable {
         case estimatedFlightTime = "estimated_flight_time"
         case estimatedUtc = "estimated_utc"
         case altitudeOverlap = "altitude_overlap"
+        case locationConfirmed = "location_confirmed"
         case source
     }
 }
