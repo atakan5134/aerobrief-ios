@@ -33,6 +33,9 @@
 		430F042B7A984C4D4407AB89 /* WarningModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523A79394E2F475D8D6EF73F /* WarningModelTests.swift */; };
 		4C13551503B854B0D3ACBD1A /* APIClientErrorParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6474EECE3B9FB28ACEE607CC /* APIClientErrorParsingTests.swift */; };
 		2C62B93EF66254F4B39BEA87 /* BriefingFlowViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F571C18B3E58435CCFBFC0CB /* BriefingFlowViewModelTests.swift */; };
+		BF4A7CC877E3E4C4D0E8488D /* Sigmet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F84474D63DBD5C1687AA33 /* Sigmet.swift */; };
+		02886B77FFB7E675C227DF9F /* SigmetMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C81A154E3B8234AEA4E44AA /* SigmetMapView.swift */; };
+		0B72BAB6A878B6106D5568CE /* SigmetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B50A20220133D23ED4E67 /* SigmetTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +68,9 @@
 		6474EECE3B9FB28ACEE607CC /* APIClientErrorParsingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientErrorParsingTests.swift; sourceTree = "<group>"; };
 		F571C18B3E58435CCFBFC0CB /* BriefingFlowViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingFlowViewModelTests.swift; sourceTree = "<group>"; };
 		B813C265BA0BAEA19D3ADD87 /* AeroBriefAITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AeroBriefAITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		42F84474D63DBD5C1687AA33 /* Sigmet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sigmet.swift; sourceTree = "<group>"; };
+		6C81A154E3B8234AEA4E44AA /* SigmetMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigmetMapView.swift; sourceTree = "<group>"; };
+		DE8B50A20220133D23ED4E67 /* SigmetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigmetTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -100,6 +106,7 @@
 				523A79394E2F475D8D6EF73F /* WarningModelTests.swift */,
 				6474EECE3B9FB28ACEE607CC /* APIClientErrorParsingTests.swift */,
 				F571C18B3E58435CCFBFC0CB /* BriefingFlowViewModelTests.swift */,
+				DE8B50A20220133D23ED4E67 /* SigmetTests.swift */,
 			);
 			path = AeroBriefAITests;
 			sourceTree = "<group>";
@@ -110,6 +117,7 @@
 				3A0D423674EF18B17902035A /* AircraftType.swift */,
 				22D747CF9DACFF81F536ACE0 /* Briefing.swift */,
 				E0E64A7A970F5B49C95E454E /* Warning.swift */,
+				42F84474D63DBD5C1687AA33 /* Sigmet.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -163,6 +171,7 @@
 				C8CF0A086528032C951A415C /* SettingsView.swift */,
 				46E9DE21E82858CC672D7889 /* UploadBriefingView.swift */,
 				3B4F46DFA1BDCE1FB762169F /* WarningDashboardView.swift */,
+				6C81A154E3B8234AEA4E44AA /* SigmetMapView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -304,6 +313,8 @@
 				B77EBDBEB403891B11BD6BC2 /* Warning.swift in Sources */,
 				7BD87DB8A7BF4FFF6C2F93DF /* WarningCardView.swift in Sources */,
 				F79330AF00F11DB519AF8BA1 /* WarningDashboardView.swift in Sources */,
+				BF4A7CC877E3E4C4D0E8488D /* Sigmet.swift in Sources */,
+				02886B77FFB7E675C227DF9F /* SigmetMapView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +326,7 @@
 				430F042B7A984C4D4407AB89 /* WarningModelTests.swift in Sources */,
 				4C13551503B854B0D3ACBD1A /* APIClientErrorParsingTests.swift in Sources */,
 				2C62B93EF66254F4B39BEA87 /* BriefingFlowViewModelTests.swift in Sources */,
+				0B72BAB6A878B6106D5568CE /* SigmetTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

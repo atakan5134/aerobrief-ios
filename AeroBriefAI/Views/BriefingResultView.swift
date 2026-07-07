@@ -143,7 +143,22 @@ struct BriefingResultView: View {
                     icon: "point.3.connected.trianglepath.dotted", color: .green) {
                 RouteSummaryView(flightPlan: briefing.flightPlan)
             }
+            if !briefing.sigmets.isEmpty {
+                NavCard(title: "SIGMETs on Route",
+                        subtitle: sigmetSubtitle,
+                        icon: "cloud.bolt.rain.fill", color: .red) {
+                    SigmetMapView(sigmets: briefing.sigmets)
+                }
+            }
         }
+    }
+
+    private var sigmetSubtitle: String {
+        let confirmed = briefing.sigmets.filter { $0.timeOverlap == true }.count
+        if confirmed > 0 {
+            return "\(confirmed) confirmed on this flight's timing · \(briefing.sigmets.count) total"
+        }
+        return "\(briefing.sigmets.count) report(s) in route FIRs"
     }
 
     // MARK: - Remarks

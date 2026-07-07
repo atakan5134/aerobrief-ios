@@ -42,6 +42,49 @@ struct Briefing: Codable, Identifiable {
     let notams: [AirportNotams]
     let weather: [String: AirportWeather]
     let atis: [AtisReport]
+    let sigmets: [Sigmet]
+
+    enum CodingKeys: String, CodingKey {
+        case id, status, selectedAircraftType, sourceFilename, createdAt, riskScore
+        case flightPlan, warnings, notams, weather, atis, sigmets
+    }
+
+    init(id: String, status: String, selectedAircraftType: String, sourceFilename: String?,
+         createdAt: String, riskScore: Int, flightPlan: FlightPlan, warnings: [BriefingWarning],
+         notams: [AirportNotams], weather: [String: AirportWeather], atis: [AtisReport],
+         sigmets: [Sigmet] = []) {
+        self.id = id
+        self.status = status
+        self.selectedAircraftType = selectedAircraftType
+        self.sourceFilename = sourceFilename
+        self.createdAt = createdAt
+        self.riskScore = riskScore
+        self.flightPlan = flightPlan
+        self.warnings = warnings
+        self.notams = notams
+        self.weather = weather
+        self.atis = atis
+        self.sigmets = sigmets
+    }
+
+    // Custom decoding so older cached briefings (saved before the "sigmets"
+    // field existed on the backend) still decode fine — sigmets defaults to
+    // empty rather than failing the whole briefing.
+    init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        id = try c.decode(String.self, forKey: .id)
+        status = try c.decode(String.self, forKey: .status)
+        selectedAircraftType = try c.decode(String.self, forKey: .selectedAircraftType)
+        sourceFilename = try c.decodeIfPresent(String.self, forKey: .sourceFilename)
+        createdAt = try c.decode(String.self, forKey: .createdAt)
+        riskScore = try c.decode(Int.self, forKey: .riskScore)
+        flightPlan = try c.decode(FlightPlan.self, forKey: .flightPlan)
+        warnings = try c.decode([BriefingWarning].self, forKey: .warnings)
+        notams = try c.decode([AirportNotams].self, forKey: .notams)
+        weather = try c.decode([String: AirportWeather].self, forKey: .weather)
+        atis = try c.decode([AtisReport].self, forKey: .atis)
+        sigmets = try c.decodeIfPresent([Sigmet].self, forKey: .sigmets) ?? []
+    }
 }
 
 struct AirportNotams: Codable {
