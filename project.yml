@@ -1,3 +1,7 @@
+# This file is the source of truth for AeroBriefAI.xcodeproj.
+# Never hand-edit project.pbxproj — after changing anything here (or adding/
+# removing files), regenerate it with `./scripts/generate-project.sh`
+# (requires `brew install xcodegen`). See that script for why this matters.
 name: AeroBriefAI
 options:
   bundleIdPrefix: com.aerobrief
@@ -13,11 +17,31 @@ targets:
       path: AeroBriefAI/Info.plist
       properties:
         UILaunchScreen: {}
+        ITSAppUsesNonExemptEncryption: false
+        # Production backend is HTTPS-only (Railway). We do NOT blanket-allow
+        # arbitrary insecure loads — only localhost is exempted, so the
+        # Backend URL setting can still point at a local dev server over
+        # plain HTTP during development.
         NSAppTransportSecurity:
-          NSAllowsArbitraryLoads: true
+          NSExceptionDomains:
+            localhost:
+              NSExceptionAllowsInsecureHTTPLoads: true
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.aerobrief.AeroBriefAI
         SWIFT_VERSION: "5.0"
         TARGETED_DEVICE_FAMILY: "1"
         GENERATE_INFOPLIST_FILE: NO
+  AeroBriefAITests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: AeroBriefAITests
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.aerobrief.AeroBriefAITests
+        SWIFT_VERSION: "5.0"
+        TARGETED_DEVICE_FAMILY: "1"
+        GENERATE_INFOPLIST_FILE: YES
+    dependencies:
+      - target: AeroBriefAI

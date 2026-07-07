@@ -198,20 +198,29 @@ struct UploadBriefingView: View {
 
     private func handlePickedFile(_ url: URL) {
         pickerError = nil
-        let didStartAccessing = url.startAccessingSecurityScopedResource()
-        defer { if didStartAccessing { url.stopAccessingSecurityScopedResource() } }
-
-        do {
-            let data = try Data(contentsOf: url)
-            if autoDetect {
-                // Let backend detect aircraft type from the PDF
-                viewModel.selectPDF(data: data, fileName: url.lastPathComponent)
-            } else {
-                // User already chose the type — skip detection, go straight to analysis
-                viewModel.selectPDFWithAircraft(data: data, fileName: url.lastPathComponent, aircraft: selectedAircraft)
+        Task {
+            do {
+                let data = try await Self.readData(from: url)
+                if autoDetect {
+                    // Let backend detect aircraft type from the PDF
+                    viewModel.selectPDF(data: data, fileName: url.lastPathComponent)
+                } else {
+                    // User already chose the type — skip detection, go straight to analysis
+                    viewModel.selectPDFWithAircraft(data: data, fileName: url.lastPathComponent, aircraft: selectedAircraft)
+                }
+            } catch {
+                pickerError = "Failed to read PDF: \(error.localizedDescription)"
             }
-        } catch {
-            pickerError = "Failed to read PDF: \(error.localizedDescription)"
         }
+    }
+
+    /// Reads the picked file off the main actor. OFP PDFs can be several MB,
+    /// so synchronous disk I/O here would otherwise briefly freeze the UI.
+    private static func readData(from url: URL) async throws -> Data {
+        try await Task.detached(priority: .userInitiated) {
+            let didStartAccessing = url.startAccessingSecurityScopedResource()
+            defer { if didStartAccessing { url.stopAccessingSecurityScopedResource() } }
+            return try Data(contentsOf: url)
+        }.value
     }
 }

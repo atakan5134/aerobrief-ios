@@ -11,9 +11,9 @@ struct RootFlowView: View {
     var body: some View {
         NavigationStack {
             stepContent
-                .onChange(of: settings.maxHeadwind)  { _ in syncWindLimits() }
-                .onChange(of: settings.maxCrosswind) { _ in syncWindLimits() }
-                .onChange(of: settings.maxTailwind)  { _ in syncWindLimits() }
+                .onChange(of: settings.maxHeadwind)  { _, _ in syncWindLimits() }
+                .onChange(of: settings.maxCrosswind) { _, _ in syncWindLimits() }
+                .onChange(of: settings.maxTailwind)  { _, _ in syncWindLimits() }
                 .onAppear { syncWindLimits() }
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {

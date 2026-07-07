@@ -2,8 +2,9 @@ import Foundation
 import Combine
 
 /// Persists user-configurable settings to UserDefaults.
-/// Sensitive values (AVWX key) are stored in UserDefaults for MVP;
-/// TODO: move to Keychain for production.
+/// Sensitive values (the AVWX API key) are stored in the Keychain instead —
+/// UserDefaults backs onto a plist that's included in unencrypted device
+/// backups, which isn't appropriate for API credentials.
 final class AppSettings: ObservableObject {
     // MARK: Backend URL
     @Published var backendURLString: String {
@@ -15,9 +16,9 @@ final class AppSettings: ObservableObject {
         didSet { UserDefaults.standard.set(defaultAircraftType.rawValue, forKey: Self.Keys.defaultAircraft) }
     }
 
-    // MARK: AVWX API key for real D-ATIS data
+    // MARK: AVWX API key for real D-ATIS data (Keychain-backed, see above)
     @Published var avwxApiKey: String {
-        didSet { UserDefaults.standard.set(avwxApiKey, forKey: Self.Keys.avwxApiKey) }
+        didSet { KeychainService.set(avwxApiKey, forKey: Self.Keys.avwxApiKey) }
     }
 
     // MARK: Wind limits (kt) — operator configurable
@@ -48,7 +49,17 @@ final class AppSettings: ObservableObject {
         let storedAircraft = ud.string(forKey: Keys.defaultAircraft).flatMap { AircraftType(rawValue: $0) }
         self.defaultAircraftType = storedAircraft ?? .a320
 
-        self.avwxApiKey = ud.string(forKey: Keys.avwxApiKey) ?? ""
+        if let keychainValue = KeychainService.get(forKey: Keys.avwxApiKey) {
+            self.avwxApiKey = keychainValue
+        } else if let legacyValue = ud.string(forKey: Keys.avwxApiKey), !legacyValue.isEmpty {
+            // One-time migration: earlier builds stored this in UserDefaults.
+            // Move it to the Keychain and scrub the plaintext copy.
+            self.avwxApiKey = legacyValue
+            KeychainService.set(legacyValue, forKey: Keys.avwxApiKey)
+            ud.removeObject(forKey: Keys.avwxApiKey)
+        } else {
+            self.avwxApiKey = ""
+        }
 
         self.maxHeadwind  = ud.object(forKey: Keys.maxHeadwind)  != nil ? ud.integer(forKey: Keys.maxHeadwind)  : 50
         self.maxCrosswind = ud.object(forKey: Keys.maxCrosswind) != nil ? ud.integer(forKey: Keys.maxCrosswind) : 25

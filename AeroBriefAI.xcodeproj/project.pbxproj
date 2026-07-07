@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		122B7F3246E6E10A654AA346 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28ECC1040D12711D3AF1AD25 /* AppSettings.swift */; };
+		78A84A6DEC2ADF66E73D606F /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380984A6620C7AF623BD8BE5 /* KeychainService.swift */; };
 		1E1BF1FD98F02E0C16BFA67B /* AircraftSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A9F18AE30EBB42BDD8553B /* AircraftSelectionView.swift */; };
 		21B2CC82A347FEC57F14E84D /* BriefingResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B380770F0F8357FE293D8C /* BriefingResultView.swift */; };
 		61A124A28E679E96D88CE196 /* BriefingFlowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45870FE69FE0C86D61FD703 /* BriefingFlowViewModel.swift */; };
@@ -28,6 +29,10 @@
 		EB9F52C269ECAE83A4B5F89B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CF0A086528032C951A415C /* SettingsView.swift */; };
 		EEF1C46BAA7818AC9777CB5F /* AirportWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8D24022D731466EB81DBB1 /* AirportWeatherView.swift */; };
 		F79330AF00F11DB519AF8BA1 /* WarningDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4F46DFA1BDCE1FB762169F /* WarningDashboardView.swift */; };
+		4FDF1719482F3FA6012A2AB1 /* AircraftTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF90CD152727D7712E1CC1A1 /* AircraftTypeTests.swift */; };
+		430F042B7A984C4D4407AB89 /* WarningModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523A79394E2F475D8D6EF73F /* WarningModelTests.swift */; };
+		4C13551503B854B0D3ACBD1A /* APIClientErrorParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6474EECE3B9FB28ACEE607CC /* APIClientErrorParsingTests.swift */; };
+		2C62B93EF66254F4B39BEA87 /* BriefingFlowViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F571C18B3E58435CCFBFC0CB /* BriefingFlowViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +42,7 @@
 		30B84B3613D0FD6A7C74B79E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22D747CF9DACFF81F536ACE0 /* Briefing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Briefing.swift; sourceTree = "<group>"; };
 		28ECC1040D12711D3AF1AD25 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		380984A6620C7AF623BD8BE5 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		3A0D423674EF18B17902035A /* AircraftType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AircraftType.swift; sourceTree = "<group>"; };
 		3B4F46DFA1BDCE1FB762169F /* WarningDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningDashboardView.swift; sourceTree = "<group>"; };
 		46E9DE21E82858CC672D7889 /* UploadBriefingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadBriefingView.swift; sourceTree = "<group>"; };
@@ -54,6 +60,11 @@
 		E0E64A7A970F5B49C95E454E /* Warning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Warning.swift; sourceTree = "<group>"; };
 		E344350949DC577EA3A9C97C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F6A9F18AE30EBB42BDD8553B /* AircraftSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AircraftSelectionView.swift; sourceTree = "<group>"; };
+		AF90CD152727D7712E1CC1A1 /* AircraftTypeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AircraftTypeTests.swift; sourceTree = "<group>"; };
+		523A79394E2F475D8D6EF73F /* WarningModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningModelTests.swift; sourceTree = "<group>"; };
+		6474EECE3B9FB28ACEE607CC /* APIClientErrorParsingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientErrorParsingTests.swift; sourceTree = "<group>"; };
+		F571C18B3E58435CCFBFC0CB /* BriefingFlowViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BriefingFlowViewModelTests.swift; sourceTree = "<group>"; };
+		B813C265BA0BAEA19D3ADD87 /* AeroBriefAITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AeroBriefAITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -77,8 +88,20 @@
 			isa = PBXGroup;
 			children = (
 				09F1A695CDDED3C99FD82865 /* AeroBriefAI */,
+				71EEA77118E6529B720150DC /* AeroBriefAITests */,
 				A98C6668F1E59E2EB751EF2A /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		71EEA77118E6529B720150DC /* AeroBriefAITests */ = {
+			isa = PBXGroup;
+			children = (
+				AF90CD152727D7712E1CC1A1 /* AircraftTypeTests.swift */,
+				523A79394E2F475D8D6EF73F /* WarningModelTests.swift */,
+				6474EECE3B9FB28ACEE607CC /* APIClientErrorParsingTests.swift */,
+				F571C18B3E58435CCFBFC0CB /* BriefingFlowViewModelTests.swift */,
+			);
+			path = AeroBriefAITests;
 			sourceTree = "<group>";
 		};
 		5CFF41AF535AC356524C8EBE /* Models */ = {
@@ -96,6 +119,7 @@
 			children = (
 				E06AF5445DC27DCA6FFA5B27 /* APIClient.swift */,
 				28ECC1040D12711D3AF1AD25 /* AppSettings.swift */,
+				380984A6620C7AF623BD8BE5 /* KeychainService.swift */,
 				D2E5AF802852BA0C761F309F /* BriefingService.swift */,
 			);
 			path = Services;
@@ -113,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				20C4A9203ACC68AA5072A3E0 /* AeroBriefAI.app */,
+				B813C265BA0BAEA19D3ADD87 /* AeroBriefAITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -171,7 +196,44 @@
 			productReference = 20C4A9203ACC68AA5072A3E0 /* AeroBriefAI.app */;
 			productType = "com.apple.product-type.application";
 		};
+		92D6483419916AA2EE411D77 /* AeroBriefAITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CB82070C2D7F6A4A8EE3AAA2 /* Build configuration list for PBXNativeTarget "AeroBriefAITests" */;
+			buildPhases = (
+				17A37C45E4EC1A14327A7366 /* Sources */,
+				36003C809F608463422B8D49 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5A044BE43AC28F8F5E542D0B /* PBXTargetDependency */,
+			);
+			name = AeroBriefAITests;
+			packageProductDependencies = (
+			);
+			productName = AeroBriefAITests;
+			productReference = B813C265BA0BAEA19D3ADD87 /* AeroBriefAITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
+
+/* Begin PBXContainerItemProxy section */
+		03EC02F7885356FCB0CDA244 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FD5DE55C95B6716FFF873AB9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 015D6147190E382467096593;
+			remoteInfo = AeroBriefAI;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXTargetDependency section */
+		5A044BE43AC28F8F5E542D0B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 015D6147190E382467096593 /* AeroBriefAI */;
+			targetProxy = 03EC02F7885356FCB0CDA244 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXProject section */
 		FD5DE55C95B6716FFF873AB9 /* Project object */ = {
@@ -179,6 +241,11 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					92D6483419916AA2EE411D77 = {
+						TestTargetID = 015D6147190E382467096593;
+					};
+				};
 			};
 			buildConfigurationList = 7228630CC4385D2563E08055 /* Build configuration list for PBXProject "AeroBriefAI" */;
 			developmentRegion = en;
@@ -195,6 +262,7 @@
 			projectRoot = "";
 			targets = (
 				015D6147190E382467096593 /* AeroBriefAI */,
+				92D6483419916AA2EE411D77 /* AeroBriefAITests */,
 			);
 		};
 /* End PBXProject section */
@@ -223,6 +291,7 @@
 				EEF1C46BAA7818AC9777CB5F /* AirportWeatherView.swift in Sources */,
 				C8D4A995CE16BE232B2D1DEC /* AnalyzingView.swift in Sources */,
 				122B7F3246E6E10A654AA346 /* AppSettings.swift in Sources */,
+				78A84A6DEC2ADF66E73D606F /* KeychainService.swift in Sources */,
 				D9C9085BB283397606A05A24 /* Briefing.swift in Sources */,
 				61A124A28E679E96D88CE196 /* BriefingFlowViewModel.swift in Sources */,
 				21B2CC82A347FEC57F14E84D /* BriefingResultView.swift in Sources */,
@@ -238,7 +307,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		17A37C45E4EC1A14327A7366 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FDF1719482F3FA6012A2AB1 /* AircraftTypeTests.swift in Sources */,
+				430F042B7A984C4D4407AB89 /* WarningModelTests.swift in Sources */,
+				4C13551503B854B0D3ACBD1A /* APIClientErrorParsingTests.swift in Sources */,
+				2C62B93EF66254F4B39BEA87 /* BriefingFlowViewModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		36003C809F608463422B8D49 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
 		0B9E5520631777543A6D48E3 /* Debug */ = {
@@ -398,6 +488,40 @@
 			};
 			name = Debug;
 		};
+		4C7B0FB4F624DFE4C7225D3A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 6GPX89HS3T;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aerobrief.AeroBriefAITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AeroBriefAI.app/AeroBriefAI";
+			};
+			name = Debug;
+		};
+		8B5F292E83071D8653E3B016 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 6GPX89HS3T;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aerobrief.AeroBriefAITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AeroBriefAI.app/AeroBriefAI";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -415,6 +539,15 @@
 			buildConfigurations = (
 				9B4CE263674060510B913DDA /* Debug */,
 				74E79D6FA99B8A2336129299 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		CB82070C2D7F6A4A8EE3AAA2 /* Build configuration list for PBXNativeTarget "AeroBriefAITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C7B0FB4F624DFE4C7225D3A /* Debug */,
+				8B5F292E83071D8653E3B016 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
